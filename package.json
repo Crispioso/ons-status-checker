@@ -1,0 +1,16 @@
+{
+  "name": "web-status",
+  "version": "1.0.0",
+  "description": "Web status dashboard for ONS.GOV.UK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 9090"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.9.0",
+    "redux": "^3.5.2"
+  }
+}
