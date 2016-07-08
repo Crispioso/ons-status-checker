@@ -88,22 +88,37 @@ function updateStore(data) {
 
 getData().then(function(data) {
     updateStore(data);
+    updateLastCheck();
 });
 
 
 /** Handle view **/
-//Get latest data on button click
+
+function updateLastCheck() {
+    var currentDate = new Date(),
+        months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ],
+        currentMonth = months[currentDate.getMonth() - 1];
+
+    lastCheckView.innerHTML = currentDate.getDate() + " " + currentMonth + " " + currentDate.getFullYear() + " at " + currentDate.getHours() + ":" + currentDate.getMinutes() + "." + currentDate.getSeconds();
+}
+
 var latestBtn = document.getElementById('js-get-latest'),
-    currentStatusView = document.getElementById('js-status');
+    currentStatusView = document.getElementById('js-status'),
+    lastCheckView = document.getElementById('js-last-check-date');
+
+//Get latest data on button click
 latestBtn.addEventListener('click', function() {
     getData().then(function(data) {
         updateStore(data);
+        updateLastCheck();
     });
 });
 
 // Update page when store is changed
 store.subscribe(function() {
-    // currentStatusView.innerHTML = JSON.stringify(store.getState());
     currentStatusView.innerHTML = template(store.getState());
 });
 
@@ -113,9 +128,9 @@ var template = function(json) {
     // Reusable tile, return negative or positive tile styling
     var tile = function (bool, innerHTML) {
         if (bool) {
-            return "<div class='padding-top--3 padding-right--1 padding-bottom--3 padding-left--1 background--astral width--8 margin-top--2 inline-block'>" + innerHTML + "</div>"
+            return "<div class='tile tile--positive width--9 margin-top--2 inline-block'>" + innerHTML + "</div>"
         } else {
-            return "<div class='padding-top--3 padding-right--1 padding-bottom--3 padding-left--1 background--iron width--8 margin-top--2 margin-left--1 inline-block'>" + innerHTML + "</div>"
+            return "<div class='tile tile--negative width--9 margin-top--2 margin-left--1 inline-block'>" + innerHTML + "</div>"
         }
     };
 

@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>ONS dashboard</title>
     <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/custom.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript" src="/node_modules/redux/dist/redux.js"></script>
 </head>
 <body>
-<div class="wrapper">
+<div id="banner" class="wrapper">
     <div class="header col-wrap">
         <div class="col col--lg-one-third col--md-one-third padding-bottom--1">
             <a href="/">
@@ -21,18 +23,29 @@
     <div class="wrapper">
         <div class="col-wrap">
             <div class="col">
-                <h1 class="page-intro__title margin-top--4">ons.gov.uk dashboard</h1>
+                <h1 class="page-intro__title margin-top--4">Status dashboard</h1>
                 <p class="page-intro__content">
-                    The latest status of the applications that make up ons.gov.uk
+                    Current status of ONS systems and applications
                 </p>
             </div>
         </div>
     </div>
 </div>
+
+<div class="background--abbey">
+    <div class="wrapper padding-top--3">
+        <div class="col-wrap">
+            <div class="col">
+                <button class="btn btn--primary get-latest-btn" id="js-get-latest">Get latest status</button>
+                <p>Last checked: <span id="js-last-check-date"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="wrapper">
     <div class="col-wrap">
         <div class="col">
-            <button class="" id="js-get-latest">Get latest status</button>
             <div id="js-status">
                 <p>Loading...</p>
             </div>
